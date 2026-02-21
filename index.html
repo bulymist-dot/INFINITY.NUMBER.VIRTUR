@@ -33,7 +33,7 @@
             color: var(--text-primary); 
             font-family: var(--font-sans); 
             min-height: 100vh; 
-            overflow: auto !important;
+            overflow-x: hidden !important;
             position: relative; 
             width: 100%;
             touch-action: auto;
@@ -43,48 +43,54 @@
 
         .app-shell { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; width: 100%; position: relative; z-index: 1; overflow: visible; }
 
-        .sidebar { background: var(--bg-elevated); border-right: 1px solid var(--border); padding: 2rem 1.25rem; display: flex; flex-direction: column; }
-        .brand { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2.5rem; }
-        .brand-logo { width: 32px; height: 32px; filter: drop-shadow(0 0 8px var(--accent-glow)); }
-        .brand-name { font-weight: 800; font-size: 1.1rem; letter-spacing: 1px; color: var(--accent); }
+        .sidebar { background: var(--bg-elevated); border-right: 1px solid var(--border); padding: 1.5rem 1rem; display: flex; flex-direction: column; }
+        .brand { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; }
+        .brand-logo { width: 28px; height: 28px; filter: drop-shadow(0 0 8px var(--accent-glow)); }
+        .brand-name { font-weight: 800; font-size: 1rem; letter-spacing: 1px; color: var(--accent); }
 
-        .nav-links { display: flex; flex-direction: column; gap: 0.4rem; flex: 1; }
-        .nav-btn { background: transparent; border: none; color: var(--text-secondary); padding: 0.75rem 1rem; border-radius: 10px; display: flex; align-items: center; gap: 0.75rem; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: 0.2s all ease; text-align: left; }
+        .nav-links { display: flex; flex-direction: column; gap: 0.3rem; flex: 1; }
+        .nav-btn { background: transparent; border: none; color: var(--text-secondary); padding: 0.6rem 0.8rem; border-radius: 8px; display: flex; align-items: center; gap: 0.6rem; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: 0.2s all ease; text-align: left; }
         .nav-btn:hover { background: rgba(139, 92, 246, 0.05); color: var(--text-primary); }
-        .nav-btn.active { background: var(--accent); color: white; box-shadow: 0 4px 15px var(--accent-glow); }
+        .nav-btn.active { background: var(--accent); color: white; box-shadow: 0 4px 12px var(--accent-glow); }
         .nav-spacer { flex: 1; }
 
-        .viewport { padding: 2rem; position: relative; width: 100%; background: radial-gradient(circle at top right, var(--accent-glow), transparent 600px); }
-        .view { display: none; animation: fadeIn 0.3s ease-out; margin: 0 auto; width: 100%; padding-bottom: 2rem; min-width: 320px; }
+        .viewport { padding: 1.5rem; position: relative; width: 100%; background: radial-gradient(circle at top right, var(--accent-glow), transparent 600px); overflow-x: hidden; }
+        .view { display: none; animation: fadeIn 0.3s ease-out; margin: 0 auto; width: 100%; padding-bottom: 1.5rem; min-width: 0; }
         .view.active { display: block; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; }
-        .user-greeting h1 { font-size: 2rem; font-weight: 700; letter-spacing: -1px; }
+        .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+        .user-greeting h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.5px; }
+        .user-greeting p { font-size: 0.8rem; color: var(--text-secondary); }
         .blink { animation: blink 1s infinite; }
         @keyframes blink { 50% { opacity: 0; } }
 
-        .balance-banner { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 1.5rem 2rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; position: relative; overflow: hidden; }
-        .balance-banner::before { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 4px; background: var(--accent); }
-        .balance-banner .label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-secondary); letter-spacing: 1.5px; }
-        .balance-banner .amount { font-size: 2.2rem; font-weight: 800; font-family: var(--font-mono); margin-top: 0.25rem; }
+        .action-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: 1.5rem; width: 100%; margin-bottom: 1rem; }
+        
+        .dashboard-container { display: flex; flex-direction: column; gap: 1rem; }
+        
+        .balance-banner { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 1.25rem 1.5rem; display: flex; justify-content: space-between; align-items: center; position: relative; overflow: hidden; }
+        .balance-banner::before { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 3px; background: var(--accent); }
+        .balance-banner .label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-secondary); letter-spacing: 1px; }
+        .balance-banner .amount { font-size: 1.8rem; font-weight: 800; font-family: var(--font-mono); margin-top: 0.2rem; }
 
-        .dashboard-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-        .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: 1.5rem; display: flex; align-items: center; gap: 1.25rem; }
-        .stat-icon { width: 48px; height: 48px; background: #ffffff; border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #000000; }
-        .stat-info .label { color: var(--text-secondary); font-size: 0.85rem; font-weight: 500; }
-        .stat-info .value { font-size: 1.25rem; font-weight: 700; display: block; }
+        .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+        .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+        .stat-icon { width: 36px; height: 36px; background: #ffffff; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #000000; flex-shrink: 0; }
+        .stat-icon i { width: 18px; height: 18px; }
+        .stat-info .label { color: var(--text-secondary); font-size: 0.7rem; font-weight: 500; }
+        .stat-info .value { font-size: 0.9rem; font-weight: 700; display: block; }
 
-        .action-card { grid-column: span 3; background: var(--bg-card); border: 1px solid var(--border); border-radius: 32px; padding: 2.5rem; margin-top: 1rem; width: 100%; }
-        .services-scroller { margin-bottom: 2.5rem; overflow-x: auto; padding-bottom: 1rem; width: 100%; }
-        .services-grid { display: flex; gap: 1rem; width: max-content; }
+        .services-scroller { margin-bottom: 1.5rem; width: 100%; }
+        .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; width: 100%; }
 
-        .service-tile { flex: 0 0 140px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 20px; padding: 1.5rem 1rem; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; cursor: pointer; transition: 0.2s all; color: var(--text-primary); text-align: center; }
-        .service-tile:hover { border-color: var(--border-hover); transform: translateY(-4px); }
-        .service-tile.active { background: var(--accent); color: white; transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 10px 20px var(--accent-glow); }
+        .service-tile { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 16px; padding: 1.25rem 0.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; cursor: pointer; transition: 0.2s all; color: var(--text-primary); text-align: center; width: 100%; }
+        .service-tile:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+        .service-tile.active { background: var(--accent); color: white; transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 8px 16px var(--accent-glow); }
 
-        .tile-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        .tile-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        .tile-icon i { width: 20px; height: 20px; }
         .wa { background: #25d366; color: white; }
         .tg { background: #229ed9; color: white; }
         .go { background: #ea4335; color: white; }
@@ -93,88 +99,100 @@
         .ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; }
         .tk { background: #000; color: white; border: 1px solid #333; }
         .nf { background: #e50914; color: white; }
+        .ot { background: #333; color: white; }
 
-        .generation-controls { display: grid; grid-template-columns: 2fr 1fr 1.5fr; gap: 1.5rem; align-items: flex-end; }
-        .control-group { display: flex; flex-direction: column; gap: 0.75rem; }
-        .control-group label { font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; }
+        .generation-controls { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+        .control-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .control-group label { font-size: 0.7rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
 
-        select, input { background: var(--bg-elevated); border: 1px solid var(--border); padding: 1rem 1.25rem; border-radius: 16px; color: white; font-size: 1rem; outline: none; transition: 0.2s; width: 100%; }
+        select, input { background: var(--bg-elevated); border: 1px solid var(--border); padding: 0.9rem 1rem; border-radius: 14px; color: white; font-size: 0.9rem; outline: none; transition: 0.2s; width: 100%; }
         select:focus, input:focus { border-color: var(--accent); }
 
-        .btn { padding: 1rem 1.5rem; border-radius: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.75rem; border: none; transition: 0.2s all; }
-        .btn.primary { background: var(--accent); color: #ffffff; box-shadow: 0 4px 24px var(--accent-glow); }
+        .btn { padding: 1rem 1.25rem; border-radius: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.6rem; border: none; transition: 0.2s all; width: 100%; font-size: 0.9rem; }
+        .btn.primary { background: var(--accent); color: #ffffff; box-shadow: 0 4px 16px var(--accent-glow); }
         .btn.disabled { opacity: 0.2; pointer-events: none; filter: grayscale(1); }
         .btn.secondary { background: rgba(255,255,255,0.05); color: var(--text-primary); border: 1px solid var(--border); }
 
         .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(15px); display: flex; align-items: center; justify-content: center; z-index: 1000; }
-        .modal-container { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 40px; width: 95%; max-width: 500px; padding: 3rem; position: relative; text-align: center; }
-        .modal-close { position: absolute; top: 1.5rem; right: 1.5rem; background: transparent; border: none; color: var(--text-secondary); cursor: pointer; }
+        .modal-container { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 32px; width: 90%; max-width: 450px; padding: 2rem; position: relative; text-align: center; }
+        .modal-close { position: absolute; top: 1rem; right: 1rem; background: transparent; border: none; color: var(--text-secondary); cursor: pointer; }
 
-        .loader { width: 48px; height: 48px; border: 4px solid rgba(255,255,255,0.1); border-top: 4px solid var(--accent); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1.5rem; }
-        .loader-small { width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.1); border-top: 2px solid var(--accent); border-radius: 50%; animation: spin 1s linear infinite; }
+        .loader { width: 40px; height: 40px; border: 3px solid rgba(255,255,255,0.1); border-top: 3px solid var(--accent); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        .sms-monitor { background: var(--bg-black); padding: 1.5rem; border-radius: 24px; margin-top: 2rem; border: 1px solid var(--border); min-height: 150px; text-align: left; }
-        .monitor-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-size: 0.8rem; color: var(--text-secondary); }
-        .sms-log { display: flex; flex-direction: column; gap: 0.75rem; max-height: 200px; overflow-y: auto; }
-        .sms-entry { background: #111; border: 1px solid #222; padding: 0.75rem 1rem; border-radius: 12px; animation: slideIn 0.3s ease-out; }
-        .sms-entry .code { font-family: var(--font-mono); font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 2px; }
-        .sms-entry .meta { font-size: 0.7rem; color: #666; }
-        .sms-placeholder { text-align:center; padding-top:2rem; opacity:0.3; font-size:0.8rem; }
+        .sms-monitor { background: var(--bg-black); padding: 1.25rem; border-radius: 20px; margin-top: 1.5rem; border: 1px solid var(--border); min-height: 120px; text-align: left; }
+        .monitor-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; font-size: 0.75rem; color: var(--text-secondary); }
+        .sms-log { display: flex; flex-direction: column; gap: 0.6rem; max-height: 180px; overflow-y: auto; }
+        .sms-entry { background: #111; border: 1px solid #222; padding: 0.6rem 0.8rem; border-radius: 10px; animation: slideIn 0.3s ease-out; }
+        .sms-entry .code { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 2px; }
+        .sms-entry .meta { font-size: 0.65rem; color: #666; }
+        .sms-placeholder { text-align:center; padding-top:1.5rem; opacity:0.3; font-size:0.75rem; }
 
         @keyframes slideIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
 
-        .countdown-bar { width: 100%; height: 4px; background: #222; border-radius: 2px; margin-top: 1rem; overflow: hidden; }
+        .countdown-bar { width: 100%; height: 3px; background: #222; border-radius: 2px; margin-top: 0.75rem; overflow: hidden; }
         .countdown-fill { height: 100%; background: var(--accent); width: 100%; transition: width 1s linear; }
 
         .hidden { display: none !important; }
 
         .mobile-nav { display: none; }
 
-        .list-view { display: flex; flex-direction: column; gap: 1rem; }
-        .number-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 1.25rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
-        .num-main { display: flex; align-items: center; gap: 1rem; }
-        .num-ico { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); }
-        .num-val { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; }
-        .num-meta { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; }
+        .list-view { display: flex; flex-direction: column; gap: 0.75rem; }
+        .number-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 1rem 1.25rem; display: flex; justify-content: space-between; align-items: center; }
+        .num-main { display: flex; align-items: center; gap: 0.75rem; }
+        .num-ico { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); }
+        .num-ico i { width: 18px; height: 18px; }
+        .num-val { font-family: var(--font-mono); font-size: 1rem; font-weight: 700; }
+        .num-meta { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; }
 
-        .badge { background: rgba(34, 197, 94, 0.1); color: #22c55e; padding: 0.4rem 0.8rem; border-radius: 100px; font-size: 0.7rem; font-weight: 800; }
-        .badge-outline { background: rgba(255,255,255,0.1); color: white; }
-        .pulse-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; display: inline-block; margin-right: 6px; position: relative; }
-        .pulse-dot::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: var(--success); opacity: 0.4; animation: pulse 1.5s infinite; }
+        .badge { background: rgba(34, 197, 94, 0.1); color: #22c55e; padding: 0.3rem 0.6rem; border-radius: 100px; font-size: 0.65rem; font-weight: 800; }
 
-        .pix-area { text-align: center; background: #000; padding: 2rem; border-radius: 20px; border: 1px dashed #333; }
-        .qr-box { background: white; width: 150px; height: 150px; margin: 0 auto 1.5rem; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #000; }
-        .pix-label { font-size: 0.8rem; color: #888; margin-bottom: 0.5rem; }
-        .pix-copy-wrapper { display: flex; gap: 0.5rem; align-items: stretch; margin-bottom: 1rem; }
-        .pix-code-block { background: #0a0a0a; padding: 0.8rem; display: block; border-radius: 12px; font-size: 0.7rem; word-break: break-all; border: 1px solid #1f1f1f; flex: 1; text-align: left; }
-        .btn-icon { background: var(--bg-card); border: 1px solid var(--border); color: white; border-radius: 12px; padding: 0.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 48px; }
-        .btn-icon:active { transform: scale(0.9); }
-        .pix-status-box { margin-top: 1.5rem; text-align: center; }
-        .pix-loading { display: flex; align-items: center; justify-content: center; gap: 0.5rem; color: var(--text-secondary); font-size: 0.9rem; }
-        .pix-static-info { display: flex; align-items: center; justify-content: center; gap: 0.5rem; color: var(--accent); font-size: 0.85rem; padding: 1rem; background: rgba(139, 92, 246, 0.05); border-radius: 12px; border: 1px solid var(--accent-glow); line-height: 1.4; }
+        .pix-area { display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-top: 1.5rem; width: 100%; }
+        .qr-box { background: rgba(139, 92, 246, 0.05); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; display: flex; align-items: center; justify-content: center; width: 100%; }
+        .pix-label { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; font-weight: 700; letter-spacing: 1px; }
+        .pix-copy-wrapper { display: flex; flex-direction: column; gap: 0.75rem; width: 100%; align-items: center; margin-top: 0.75rem; }
+        .pix-code-block { background: #111; border: 1px solid #222; padding: 0.8rem; border-radius: 10px; width: 100%; font-size: 0.65rem; word-break: break-all; white-space: normal; text-align: center; }
+        .btn-copy-full { background: var(--accent); color: white; width: 100%; min-height: 55px; border-radius: 14px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; border: none; padding: 0 1rem; font-weight: 700; font-size: 0.8rem; box-shadow: 0 4px 12px var(--accent-glow); }
+        .btn-copy-full:hover { transform: translateY(-2px); box-shadow: 0 6px 18px var(--accent-glow); }
+        .btn-copy-full:active { transform: translateY(0); }
 
-        @keyframes pulse { 0% { transform: scale(1); opacity: 0.4; } 100% { transform: scale(2.5); opacity: 0; } }
+        .pix-status-box { background: rgba(139, 92, 246, 0.05); border: 1px solid var(--border); border-radius: 16px; padding: 1.25rem; margin-top: 0.75rem; width: 100%; }
+        .pix-static-info { display: flex; align-items: center; gap: 0.75rem; }
 
-        .modal-success-header { display:flex; align-items:center; justify-content:center; gap:0.5rem; margin-bottom: 1.5rem; }
-        .modal-phone-text { font-family:var(--font-mono); font-size:2rem; letter-spacing:1px; }
-        .countdown-timer-text { font-size:0.75rem; color:var(--text-secondary); margin-top:0.5rem; }
+        .countdown-timer-text { font-size:0.7rem; color:var(--text-secondary); margin-top:0.4rem; }
 
         .support-link { color: var(--accent); text-decoration: none; font-weight: 700; word-break: break-all; }
         .support-link:hover { text-decoration: underline; }
 
+        .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: var(--accent); color: white; padding: 0.6rem 1.25rem; border-radius: 100px; font-weight: 700; font-size: 0.8rem; z-index: 2000; box-shadow: 0 8px 24px rgba(0,0,0,0.5); animation: toastIn 0.3s ease-out; }
+        @keyframes toastIn { from { opacity: 0; transform: translate(-50%, -20px); } to { opacity: 1; transform: translate(-50%, 0); } }
+
         @media (max-width: 1024px) {
             .app-shell { grid-template-columns: 1fr; }
             .sidebar { display: none; }
-            .viewport { padding: 1.5rem 1rem 6rem; overflow: visible; }
-            .dashboard-grid { grid-template-columns: 1fr; }
-            .action-card { grid-column: 1; padding: 1.5rem; }
-            .generation-controls { grid-template-columns: 1fr; }
-            .mobile-nav { display: flex; position: fixed; bottom: 0; left: 0; right: 0; background: rgba(8, 8, 8, 0.95); backdrop-filter: blur(20px); border-top: 1px solid var(--border); padding: 0.6rem 1rem; justify-content: space-around; z-index: 100; }
-            .mobile-nav-btn { background: transparent; border: none; color: var(--text-secondary); padding: 0.75rem; }
+            .viewport { padding: 1.25rem 1rem 5.5rem; overflow-x: hidden; }
+            .mobile-nav { display: flex; position: fixed; bottom: 0; left: 0; right: 0; background: rgba(8, 8, 8, 0.95); backdrop-filter: blur(20px); border-top: 1px solid var(--border); padding: 0.5rem 0.75rem; justify-content: space-around; z-index: 100; }
+            .mobile-nav-btn { background: transparent; border: none; color: var(--text-secondary); padding: 0.6rem; }
+            .mobile-nav-btn i { width: 20px; height: 20px; }
             .mobile-nav-btn.active { color: var(--accent); }
-            .page-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-            .user-greeting h1 { font-size: 1.5rem; }
+            .page-header { flex-direction: column; align-items: flex-start; gap: 0.4rem; margin-bottom: 1.25rem; }
+            .user-greeting h1 { font-size: 1.3rem; }
+            .user-greeting p { font-size: 0.75rem; }
+            
+            .action-card { padding: 1.5rem 1rem; border-radius: 20px; }
+            .stats-row { grid-template-columns: 1fr; gap: 0.6rem; }
+            .stat-card { padding: 0.8rem; border-radius: 14px; }
+            .balance-banner { padding: 1rem; border-radius: 16px; }
+            .balance-banner .amount { font-size: 1.6rem; }
+            
+            .services-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+            .service-tile { padding: 1.25rem 0.4rem; border-radius: 16px; }
+            .tile-icon { width: 44px; height: 44px; font-size: 1.3rem; }
+            .tile-name { font-size: 0.8rem; font-weight: 700; }
+            .tile-price { font-size: 0.7rem; }
+            
+            select, input { padding: 0.85rem 0.9rem; font-size: 0.9rem; border-radius: 12px; }
+            .btn { padding: 1rem 1.1rem; font-size: 0.9rem; border-radius: 14px; }
         }
     </style>
     <script type="importmap">
@@ -214,32 +232,37 @@
                     </div>
                 </header>
 
-                <div class="balance-banner">
-                    <div class="balance-content">
-                        <span class="label">CRÉDITOS DISPONÍVEIS</span>
-                        <div class="amount" id="display-balance">R$ 0,00</div>
+                <div class="dashboard-container">
+                    <div class="balance-banner">
+                        <div class="balance-content">
+                            <span class="label">CRÉDITOS DISPONÍVEIS</span>
+                            <div class="amount" id="display-balance">R$ 0,00</div>
+                        </div>
+                        <div class="banner-visual"><i data-lucide="credit-card" style="width:32px; height:32px; opacity:0.4;"></i></div>
                     </div>
-                    <div class="banner-visual"><i data-lucide="credit-card" style="width:40px; height:40px; opacity:0.4;"></i></div>
-                </div>
 
-                <div class="dashboard-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon"><i data-lucide="users"></i></div>
-                        <div class="stat-info"><span class="label">Online agora</span><span class="value" id="stat-online">2.481</span></div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon"><i data-lucide="activity"></i></div>
-                        <div class="stat-info"><span class="label">Conexões</span><span class="value" id="stat-active">0</span></div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon"><i data-lucide="globe"></i></div>
-                        <div class="stat-info"><span class="label">SMS Recebidos</span><span class="value" id="stat-sms">0</span></div>
+                    <div class="stats-row">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i data-lucide="users"></i></div>
+                            <div class="stat-info"><span class="label">Online agora</span><span class="value" id="stat-online">2.481</span></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i data-lucide="activity"></i></div>
+                            <div class="stat-info"><span class="label">Conexões</span><span class="value" id="stat-active">0</span></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i data-lucide="globe"></i></div>
+                            <div class="stat-info"><span class="label">SMS Recebidos</span><span class="value" id="stat-sms">0</span></div>
+                        </div>
                     </div>
 
                     <div class="action-card">
-                        <div class="card-header" style="margin-bottom:1.5rem;">
-                            <h2>Alocar Nova Linha</h2>
-                            <p>Selecione a plataforma para bypass de segurança.</p>
+                        <div style="text-align: center; margin-bottom: 1.5rem;">
+                            <div class="stat-icon" style="margin: 0 auto 1rem; width: 52px; height: 52px; background: var(--accent); color: white; border-radius: 16px;">
+                                <i data-lucide="cpu" style="width: 26px; height: 26px;"></i>
+                            </div>
+                            <h2 style="margin-bottom: 0.4rem; font-size: 1.2rem;">Alocar Nova Linha</h2>
+                            <p style="color: var(--text-secondary); font-size: 0.8rem;">Selecione a plataforma para bypass de segurança.</p>
                         </div>
                         
                         <div class="services-scroller">
@@ -282,11 +305,6 @@
                                     <option value="71">Salvador (71)</option>
                                     <option value="81">Recife (81)</option>
                                     <option value="91">Belém (91)</option>
-                                    <option value="212">Nova York (212)</option>
-                                    <option value="310">Los Angeles (310)</option>
-                                    <option value="21">Lisboa (21)</option>
-                                    <option value="91">Madrid (91)</option>
-                                    <option value="01">Paris (01)</option>
                                 </datalist>
                             </div>
                             <button id="btn-generate" class="btn primary disabled">
@@ -309,7 +327,7 @@
                 <header class="page-header"><h1>Log de Operações</h1></header>
                 <div class="action-card" style="padding:0; overflow-x: auto;">
                     <table style="width:100%; border-collapse: collapse; min-width: 500px;">
-                        <thead style="background:#111;"><tr><th style="padding:1rem; text-align:left;">Data</th><th style="padding:1rem; text-align:left;">Serviço</th><th style="padding:1rem; text-align:left;">Número</th><th style="padding:1rem; text-align:left;">Valor</th></tr></thead>
+                        <thead style="background:#111;"><tr><th style="padding:0.75rem; text-align:left; font-size: 0.75rem;">Data</th><th style="padding:0.75rem; text-align:left; font-size: 0.75rem;">Serviço</th><th style="padding:0.75rem; text-align:left; font-size: 0.75rem;">Número</th><th style="padding:0.75rem; text-align:left; font-size: 0.75rem;">Valor</th></tr></thead>
                         <tbody id="history-body"></tbody>
                     </table>
                 </div>
@@ -319,8 +337,15 @@
             <section id="view-recharge" class="view">
                 <header class="page-header"><h1>Créditos</h1></header>
                 <div class="action-card">
-                    <p style="margin-bottom:2rem; color:var(--text-secondary);">Recarga instantânea via PIX para uso imediato.</p>
-                    <div class="preset-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem; margin-bottom: 2rem;">
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <div class="stat-icon" style="margin: 0 auto 1rem; width: 52px; height: 52px; background: var(--accent); color: white; border-radius: 16px;">
+                            <i data-lucide="wallet" style="width: 26px; height: 26px;"></i>
+                        </div>
+                        <h2 style="margin-bottom: 0.4rem; font-size: 1.2rem;">Recarregar Saldo</h2>
+                        <p style="color: var(--text-secondary); font-size: 0.8rem;">Recarga instantânea via PIX para uso imediato.</p>
+                    </div>
+                    
+                    <div class="preset-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap:0.75rem; margin-bottom: 1.5rem;">
                         <button class="btn secondary preset-btn" data-value="10">R$ 10,00</button>
                         <button class="btn secondary preset-btn" data-value="50">R$ 50,00</button>
                         <button class="btn secondary preset-btn" data-value="100">R$ 100,00</button>
@@ -329,25 +354,24 @@
                     
                     <div id="pix-display" class="hidden pix-area">
                         <div class="qr-box">
-                            <i data-lucide="qr-code" style="width: 120px; height: 120px;"></i>
+                            <i data-lucide="qr-code" style="width: 100px; height: 100px;"></i>
                         </div>
-                        <p class="pix-label">CÓDIGO PIX COPIA E COLA:</p>
+                        <p class="pix-label">CÓDIGO PIX  E COLA:</p>
                         <div class="pix-copy-wrapper">
-                            <code id="pix-code" class="pix-code-block">00020101021126360014BR.GOV.BCB.PIX0114+55219863726775204000053039865802BR5925JOSE HENRIQUE FANHA DE SO6008SAOPAULO61080132305062070503***6304D5D6</code>
-                            <button id="btn-copy-pix" class="btn-icon"><i data-lucide="copy"></i></button>
+                            <code id="pix-code" class="pix-code-block">00020101021126330014BR.GOV.BCB.PIX0111199666427145204000053039865802BR5925JOSE HENRIQUE FANHA DE SO6008SAOPAULO61080132305062070503***63045CB5</code>
+                            <button id="btn-copy-pix" class="btn-copy-full">
+                                <i data-lucide="copy" style="margin-right: 6px; width: 16px; height: 16px;"></i>
+                                <span>COPIE AQUI E VÁ NO SEU BANCO PARA A RECARGA</span>
+                            </button>
                         </div>
                         
-                        <div class="pix-actions" style="margin-top: 1rem;">
-                            <a href="https://www.itau.com.br" target="_blank" class="btn secondary" style="width: 100%; text-decoration: none;">ABRIR APLICATIVO DO BANCO</a>
-                        </div>
-
                         <div id="pix-status-box" class="pix-status-box">
-                            <div class="pix-static-info" style="flex-direction: column; gap: 0.5rem;">
-                                <div style="display:flex; align-items:center; gap:0.5rem;">
-                                    <i data-lucide="info" style="width: 16px; height: 16px;"></i>
+                            <div class="pix-static-info" style="flex-direction: column; gap: 0.4rem;">
+                                <div style="display:flex; align-items:center; gap:0.4rem; font-size: 0.8rem;">
+                                    <i data-lucide="info" style="width: 14px; height: 14px;"></i>
                                     <span>Aguardando pagamento...</span>
                                 </div>
-                                <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                                <p style="font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.4rem; text-align: center;">
                                     se em até 2 horas a sua recarga não cair fale com o nosso suporte: 
                                     <a href="https://wa.me/552198725-3392?text=OI,+Poderia+falar+com+o+SUPORTE.+" class="support-link" target="_blank">Clique Aqui</a>
                                 </p>
@@ -361,19 +385,19 @@
             <section id="view-support" class="view">
                 <header class="page-header"><h1>Central de Suporte</h1></header>
                 <div class="action-card">
-                    <div style="text-align: center; padding: 1rem;">
-                        <div class="stat-icon" style="margin: 0 auto 1.5rem; width: 64px; height: 64px; background: var(--accent); color: white;">
-                            <i data-lucide="headset" style="width: 32px; height: 32px;"></i>
+                    <div style="text-align: center; padding: 0.5rem;">
+                        <div class="stat-icon" style="margin: 0 auto 1rem; width: 52px; height: 52px; background: var(--accent); color: white; border-radius: 16px;">
+                            <i data-lucide="headset" style="width: 26px; height: 26px;"></i>
                         </div>
-                        <h2 style="margin-bottom: 1rem;">Como podemos ajudar?</h2>
-                        <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                        <h2 style="margin-bottom: 0.75rem; font-size: 1.2rem;">Como podemos ajudar?</h2>
+                        <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.85rem;">
                             Nossa equipe está disponível para resolver problemas técnicos, dúvidas sobre recargas ou alocação de números.
                         </p>
                         <a href="https://wa.me/552198725-3392?text=OI,+Poderia+falar+com+o+SUPORTE.+" target="_blank" class="btn primary" style="width: 100%; text-decoration: none;">
                             <i data-lucide="message-circle"></i>
                             FALAR NO WHATSAPP
                         </a>
-                        <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-secondary);">
+                        <p style="margin-top: 1rem; font-size: 0.75rem; color: var(--text-secondary);">
                             Atendimento prioritário para usuários com recargas ativas.
                         </p>
                     </div>
@@ -384,9 +408,14 @@
             <section id="view-settings" class="view">
                 <header class="page-header"><h1>Ajustes</h1></header>
                 <div class="action-card">
-                    <h3>Privilégios Admin</h3>
-                    <p style="color:var(--text-secondary); margin-bottom: 1.5rem;">Insira o código de liberação para acesso ilimitado.</p>
-                    <input type="password" id="admin-code" placeholder="••••••••" style="width:100%; margin-bottom: 1rem;">
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <div class="stat-icon" style="margin: 0 auto 1rem; width: 52px; height: 52px; background: var(--accent); color: white; border-radius: 16px;">
+                            <i data-lucide="shield-check" style="width: 26px; height: 26px;"></i>
+                        </div>
+                        <h2 style="margin-bottom: 0.4rem; font-size: 1.2rem;">Privilégios Admin</h2>
+                        <p style="color: var(--text-secondary); font-size: 0.8rem;">Insira o código de liberação para acesso ilimitado.</p>
+                    </div>
+                    <input type="password" id="admin-code" placeholder="••••••••" style="width:100%; margin-bottom: 0.75rem;">
                     <button id="btn-admin-auth" class="btn secondary" style="width:100%;">Validar Licença</button>
                 </div>
             </section>
@@ -407,98 +436,86 @@
             <button class="modal-close" id="modal-close"><i data-lucide="x"></i></button>
             <div id="step-processing">
                 <div class="loader"></div>
-                <h3>Sincronizando com Operadora</h3>
-                <p>Verificando disponibilidade de linha limpa...</p>
+                <h3 style="font-size: 1.1rem;">Sincronizando com Operadora</h3>
+                <p style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 0.75rem;">Conectando ao servidor regional...</p>
             </div>
             <div id="step-success" class="hidden">
-                <div class="modal-success-header">
-                    <span class="badge" id="modal-service-name">WHATSAPP</span>
-                    <span class="badge badge-outline">RED-GLOBAL</span>
+                <h3 style="margin-bottom: 0.75rem; font-size: 1.1rem;">Número Alocado com Sucesso</h3>
+                <div style="background: var(--bg-black); border: 1px solid var(--border); border-radius: 16px; padding: 1.25rem; margin-bottom: 1.25rem;">
+                    <p style="color: var(--text-secondary); font-size: 0.65rem; text-transform: uppercase; margin-bottom: 0.4rem;">Plataforma</p>
+                    <p style="font-size: 1rem; font-weight: 700; margin-bottom: 1rem;" id="modal-service-name">WHATSAPP</p>
+                    <p style="color: var(--text-secondary); font-size: 0.65rem; text-transform: uppercase; margin-bottom: 0.4rem;">Número Alocado</p>
+                    <p style="font-size: 1.2rem; font-weight: 700; font-family: var(--font-mono); margin-bottom: 1rem; color: var(--accent);" id="modal-phone-display">+55 11 98765-4321</p>
+                    
+                    <button id="btn-copy-modal-phone" class="btn-copy-full" style="min-height: 50px; margin-bottom: 1rem; font-size: 0.75rem;">
+                        <i data-lucide="copy" style="margin-right: 6px; width: 16px; height: 16px;"></i>
+                        <span>COPIAR NÚMERO</span>
+                    </button>
+
+                    <p style="color: var(--text-secondary); font-size: 0.65rem; text-transform: uppercase; margin-bottom: 0.4rem;">Tempo Restante</p>
+                    <p style="font-size: 1rem; font-weight: 700; font-family: var(--font-mono);" id="timer-display">05:00</p>
                 </div>
-                <h2 id="modal-phone-display" class="modal-phone-text">+55 11 9XXXX-XXXX</h2>
-                <div class="countdown-bar"><div class="countdown-fill" id="countdown-fill"></div></div>
-                <p class="countdown-timer-text">Expira em <span id="timer-display">05:00</span></p>
-                
                 <div class="sms-monitor">
                     <div class="monitor-header">
-                        <span><span class="pulse-dot"></span>ESCUTANDO REDE...</span>
+                        <span>CÓDIGOS RECEBIDOS</span>
                         <span id="sms-count">0 SMS</span>
                     </div>
-                    <div id="sms-log" class="sms-log">
-                        <div class="sms-placeholder">Aguardando envio do código pelo aplicativo...</div>
-                    </div>
+                    <div class="sms-log" id="sms-log"></div>
                 </div>
+                <div class="countdown-bar">
+                    <div class="countdown-fill" id="countdown-fill"></div>
+                </div>
+                <p class="countdown-timer-text">A sessão será encerrada quando o tempo acabar</p>
             </div>
         </div>
     </div>
 
     <script type="module">
-        import { createIcons, Cpu, Hash, Zap, Settings, Fingerprint, Activity, Globe, MessageCircle, Send, Mail, Facebook, ArrowRight, X, ListOrdered, Smartphone, Users, QrCode, LayoutDashboard, Wallet, History, ShieldCheck, Instagram, Music, Tv, Copy, Headset, Check, Clock, Info } from 'lucide';
+        import { createIcons, Cpu, Hash, Zap, Settings, Fingerprint, Activity, Globe, MessageCircle, Send, Mail, Facebook, ArrowRight, X, ListOrdered, Smartphone, Users, QrCode, LayoutDashboard, Wallet, History, ShieldCheck, Instagram, Music, Tv, Copy, Headset, Check, Clock, Info, Plus } from 'lucide';
+
+        const STORAGE_KEY = 'vnumber_app_state';
 
         const SERVICES = [
-            { id: 'whatsapp', name: 'WhatsApp', cost: 5.00, icon: 'message-circle', class: 'wa' },
-            { id: 'telegram', name: 'Telegram', cost: 4.50, icon: 'send', class: 'tg' },
-            { id: 'instagram', name: 'Instagram', cost: 4.00, icon: 'instagram', class: 'ig' },
-            { id: 'google', name: 'Google', cost: 3.00, icon: 'mail', class: 'go' },
-            { id: 'facebook', name: 'Facebook', cost: 3.50, icon: 'facebook', class: 'fb' },
-            { id: 'tiktok', name: 'TikTok', cost: 3.50, icon: 'music', class: 'tk' },
-            { id: 'netflix', name: 'Netflix', cost: 2.00, icon: 'tv', class: 'nf' },
-            { id: 'microsoft', name: 'Microsoft', cost: 2.50, icon: 'smartphone', class: 'ms' }
+            { id: 'wa', name: 'WhatsApp', icon: 'message-circle', class: 'wa', cost: 2.50 },
+            { id: 'tg', name: 'Telegram', icon: 'send', class: 'tg', cost: 2.00 },
+            { id: 'go', name: 'Google', icon: 'mail', class: 'go', cost: 3.00 },
+            { id: 'fb', name: 'Facebook', icon: 'facebook', class: 'fb', cost: 2.75 },
+            { id: 'ms', name: 'Microsoft', icon: 'globe', class: 'ms', cost: 3.50 },
+            { id: 'ig', name: 'Instagram', icon: 'instagram', class: 'ig', cost: 2.50 },
+            { id: 'tk', name: 'TikTok', icon: 'music', class: 'tk', cost: 2.25 },
+            { id: 'nf', name: 'Netflix', icon: 'tv', class: 'nf', cost: 4.00 },
+            { id: 'ot', name: 'Outros', icon: 'plus', class: 'ot', cost: 3.00 },
         ];
 
-        const STORAGE_KEY = 'vpanel_state_v5';
+        const formatBRL = (val) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val);
+
+        const generatePhone = (country, prefix) => {
+            const prefixes = { br: '+55', us: '+1', uk: '+44', pt: '+351', es: '+34', fr: '+33', de: '+49', it: '+39', ca: '+1', mx: '+52', ar: '+54', ru: '+7', cn: '+86', jp: '+81', au: '+61' };
+            const p = prefixes[country] || '+55';
+            const pf = prefix || '11';
+            const num = Math.floor(Math.random() * 900000000) + 100000000;
+            return `${p} ${pf} ${String(num).slice(0, 5)}-${String(num).slice(5)}`;
+        };
 
         class AudioManager {
-            constructor() {
-                this.ctx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            async play(type) {
-                if (this.ctx.state === 'suspended') this.ctx.resume();
+            constructor() { this.ctx = new (window.AudioContext || window.webkitAudioContext)(); }
+            play(type) {
+                const now = this.ctx.currentTime;
                 const osc = this.ctx.createOscillator();
                 const gain = this.ctx.createGain();
                 osc.connect(gain);
                 gain.connect(this.ctx.destination);
-                
-                if (type === 'click') {
-                    osc.frequency.setValueAtTime(800, this.ctx.currentTime);
-                    osc.frequency.exponentialRampToValueAtTime(100, this.ctx.currentTime + 0.1);
-                    gain.gain.setValueAtTime(0.05, this.ctx.currentTime);
-                    gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.1);
-                } else if (type === 'success') {
-                    osc.frequency.setValueAtTime(400, this.ctx.currentTime);
-                    osc.frequency.exponentialRampToValueAtTime(1200, this.ctx.currentTime + 0.2);
-                    gain.gain.setValueAtTime(0.05, this.ctx.currentTime);
-                    gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.2);
-                }
-                osc.start();
-                osc.stop(this.ctx.currentTime + 0.2);
+                if (type === 'click') { osc.frequency.value = 800; gain.gain.setValueAtTime(0.1, now); gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1); osc.start(now); osc.stop(now + 0.1); }
+                else if (type === 'success') { osc.frequency.setValueAtTime(800, now); osc.frequency.setValueAtTime(1000, now + 0.1); gain.gain.setValueAtTime(0.15, now); gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2); osc.start(now); osc.stop(now + 0.2); }
             }
-        }
-
-        function generatePhone(country, prefixInput) {
-            const p = prefixInput || "11";
-            const b = Math.floor(10000000 + Math.random() * 90000000);
-            const codes = {
-                br: '+55', us: '+1', uk: '+44', pt: '+351', es: '+34', fr: '+33',
-                de: '+49', it: '+39', ca: '+1', mx: '+52', ar: '+54', ru: '+7',
-                cn: '+86', jp: '+81', au: '+61'
-            };
-            const code = codes[country] || '+00';
-            if (country === 'br') return `${code} ${p} 9${String(b).slice(0, 4)}-${String(b).slice(4)}`;
-            if (country === 'us' || country === 'ca') return `${code} ${p} 555-${String(b).slice(0, 4)}`;
-            return `${code} ${p} ${String(b).slice(0, 4)} ${String(b).slice(4, 8)}`;
-        }
-
-        function formatBRL(val) {
-            return `R$ ${val.toFixed(2).replace('.', ',')}`;
         }
 
         class VNumberApp {
             constructor() {
                 this.state = this.loadState();
                 this.selectedService = null;
-                this.activeTimer = null;
                 this.audio = new AudioManager();
+                this.activeTimer = null;
                 this.init();
             }
 
@@ -526,7 +543,7 @@
             }
 
             updateIcons() { 
-                createIcons({ icons: { Cpu, Hash, Zap, Settings, Fingerprint, Activity, Globe, MessageCircle, Send, Mail, Facebook, ArrowRight, X, ListOrdered, Smartphone, Users, QrCode, LayoutDashboard, Wallet, History, ShieldCheck, Instagram, Music, Tv, Copy, Headset, Check, Clock, Info } }); 
+                createIcons({ icons: { Cpu, Hash, Zap, Settings, Fingerprint, Activity, Globe, MessageCircle, Send, Mail, Facebook, ArrowRight, X, ListOrdered, Smartphone, Users, QrCode, LayoutDashboard, Wallet, History, ShieldCheck, Instagram, Music, Tv, Copy, Headset, Check, Clock, Info, Plus } }); 
             }
 
             renderServices() {
@@ -548,6 +565,18 @@
                     if (val < 2400) val = 2400;
                     el.innerText = val.toLocaleString();
                 }, 3000);
+            }
+
+            showToast(msg) {
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerText = msg;
+                document.body.appendChild(toast);
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    toast.style.transition = '0.3s';
+                    setTimeout(() => toast.remove(), 300);
+                }, 2000);
             }
 
             bindEvents() {
@@ -590,9 +619,26 @@
                     const code = document.getElementById('pix-code').innerText;
                     navigator.clipboard.writeText(code).then(() => {
                         this.audio.play('success');
+                        this.showToast("CÓDIGO PIX COPIADO!");
                         const btn = document.getElementById('btn-copy-pix');
                         const original = btn.innerHTML;
-                        btn.innerHTML = '<i data-lucide="check" style="color:var(--success)"></i>';
+                        btn.innerHTML = '<i data-lucide="check" style="color:var(--success); margin-right: 6px; width: 16px; height: 16px;"></i><span>COPIADO!</span>';
+                        this.updateIcons();
+                        setTimeout(() => {
+                            btn.innerHTML = original;
+                            this.updateIcons();
+                        }, 2000);
+                    });
+                });
+
+                document.getElementById('btn-copy-modal-phone').addEventListener('click', () => {
+                    const phone = document.getElementById('modal-phone-display').innerText;
+                    navigator.clipboard.writeText(phone).then(() => {
+                        this.audio.play('success');
+                        this.showToast("NÚMERO COPIADO!");
+                        const btn = document.getElementById('btn-copy-modal-phone');
+                        const original = btn.innerHTML;
+                        btn.innerHTML = '<i data-lucide="check" style="color:var(--success); margin-right: 6px; width: 16px; height: 16px;"></i><span>COPIADO!</span>';
                         this.updateIcons();
                         setTimeout(() => {
                             btn.innerHTML = original;
@@ -713,19 +759,25 @@
             renderNumbers() {
                 const container = document.getElementById('numbers-container');
                 if (this.state.activeNumbers.length === 0) {
-                    container.innerHTML = '<p style="text-align:center; opacity:0.5; padding:2rem;">Nenhum número alocado recentemente.</p>';
+                    container.innerHTML = '<p style="text-align:center; opacity:0.5; padding:1.5rem; font-size: 0.8rem;">Nenhum número alocado recentemente.</p>';
                     return;
                 }
                 container.innerHTML = this.state.activeNumbers.map(n => `
-                    <div class="number-item">
-                        <div class="num-main">
-                            <div class="num-ico"><i data-lucide="smartphone"></i></div>
-                            <div>
-                                <div class="num-val">${n.phone}</div>
-                                <div class="num-meta">${n.service} • ${n.date}</div>
+                    <div class="number-item" style="flex-direction: column; gap: 0.75rem; align-items: stretch;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div class="num-main">
+                                <div class="num-ico"><i data-lucide="smartphone"></i></div>
+                                <div>
+                                    <div class="num-val">${n.phone}</div>
+                                    <div class="num-meta">${n.service} • ${n.date}</div>
+                                </div>
                             </div>
+                            <span class="badge">ATIVO</span>
                         </div>
-                        <span class="badge">ATIVO</span>
+                        <button class="btn-copy-full" style="min-height: 40px; font-size: 0.7rem;" onclick="navigator.clipboard.writeText('${n.phone}').then(() => { alert('NÚMERO COPIADO!'); })">
+                            <i data-lucide="copy" style="width: 12px; height: 12px; margin-right: 4px;"></i>
+                            COPIAR NÚMERO
+                        </button>
                     </div>
                 `).join('');
                 this.updateIcons();
@@ -734,15 +786,15 @@
             renderHistory() {
                 const body = document.getElementById('history-body');
                 if (this.state.history.length === 0) {
-                    body.innerHTML = '<tr><td colspan="4" style="padding:2rem; text-align:center; opacity:0.5;">Sem registros.</td></tr>';
+                    body.innerHTML = '<tr><td colspan="4" style="padding:1.5rem; text-align:center; opacity:0.5; font-size: 0.8rem;">Sem registros.</td></tr>';
                     return;
                 }
                 body.innerHTML = this.state.history.map(h => `
                     <tr style="border-bottom:1px solid #222;">
-                        <td style="padding:1rem; font-size:0.8rem;">${h.date}</td>
-                        <td style="padding:1rem; font-size:0.8rem; text-transform:capitalize;">${h.service}</td>
-                        <td style="padding:1rem; font-size:0.8rem; font-family:var(--font-mono);">${h.phone}</td>
-                        <td style="padding:1rem; font-size:0.8rem;">R$ ${h.cost.toFixed(2)}</td>
+                        <td style="padding:0.75rem; font-size:0.7rem;">${h.date}</td>
+                        <td style="padding:0.75rem; font-size:0.7rem; text-transform:capitalize;">${h.service}</td>
+                        <td style="padding:0.75rem; font-size:0.7rem; font-family:var(--font-mono);">${h.phone}</td>
+                        <td style="padding:0.75rem; font-size:0.7rem;">R$ ${h.cost.toFixed(2)}</td>
                     </tr>
                 `).join('');
             }
